@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCogs, faBook, faShoppingBasket, faClock, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -30,8 +30,8 @@ export default (props = {}) => {
         <Accordion.Item eventKey={eventKey}>
           <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
             <span>
-              <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
-              <span className="sidebar-text">{title}</span>
+              <span className="sidebar-icon"><FontAwesomeIcon size='xs' icon={icon} /> </span>
+              <span className="sidebar-text" style={{ fontSize: 15,}}>{title}</span>
             </span>
           </Accordion.Button>
           <Accordion.Body className="multi-level">
@@ -54,10 +54,10 @@ export default (props = {}) => {
       <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
         <Nav.Link {...linkProps} target={target} className={classNames}>
           <span>
-            {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
+            {icon ? <span className="sidebar-icon"><FontAwesomeIcon size={10} icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
-            <span className="sidebar-text">{title}</span>
+            <span className="sidebar-text" style={{ fontSize: 14, }}>{title}</span>
           </span>
           {badgeText ? (
             <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
@@ -79,7 +79,7 @@ export default (props = {}) => {
       </Navbar>
       <CSSTransition timeout={300} in={show} classNames="sidebar-transition">
         <SimpleBar className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
-          <div className="sidebar-inner px-4 pt-3">
+          <div className="sidebar-inner px-2 pt-3" style={{ fontSize: '90%'}}>
             <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
               <div className="d-flex align-items-center">
                 <div className="user-avatar lg-avatar me-4">
@@ -97,60 +97,41 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt React" link={Routes.Presentation.path} image={ReactHero} />
+              {/*<NavItem title="Volt React" link={Routes.Presentation.path} image={ReactHero} />*/}
 
-              <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
-              <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
-              <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />
+              <NavItem title="Dashboard" link={Routes.DashboardOverview.path} icon={faChartPie} />
+              {/*<NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />*/}
+              {/*<NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />*/}
 
-              <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" link={Routes.BootstrapTables.path} />
+              <CollapsableNavItem eventKey="system/" title="Hệ thống" icon={faCogs}>
+                <NavItem title="Quản lý người dùng" link={Routes.ManagementUser.path} />
+                <NavItem title="Quản lý đơn vị, phòng ban" link={Routes.ManagementDepartment.path} />
               </CollapsableNavItem>
 
-              <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
-                <NavItem title="Sign In" link={Routes.Signin.path} />
-                <NavItem title="Sign Up" link={Routes.Signup.path} />
-                <NavItem title="Forgot password" link={Routes.ForgotPassword.path} />
-                <NavItem title="Reset password" link={Routes.ResetPassword.path} />
-                <NavItem title="Lock" link={Routes.Lock.path} />
-                <NavItem title="404 Not Found" link={Routes.NotFound.path} />
-                <NavItem title="500 Server Error" link={Routes.ServerError.path} />
+              <CollapsableNavItem eventKey="personnel/" title="Quản lý nhân sự" icon={faUser}>
+                <NavItem title="Nhân viên" link={Routes.Personnel.path} />
+                <NavItem title="Hợp đồng, bảo hiểm" link={Routes.Contract.path} />
+                <NavItem title="Quá trình làm việc" link={Routes.Working.path} />
+                <NavItem title="Báo cáo thông tin nhân viên" link={Routes.PersonnelReport.path} />
               </CollapsableNavItem>
 
-              <NavItem external title="Plugins" link="https://demo.themesberg.com/volt-pro-react/#/plugins/charts" target="_blank" badgeText="Pro" icon={faChartPie} />
-
-              <Dropdown.Divider className="my-3 border-indigo" />
-
-              <CollapsableNavItem eventKey="documentation/" title="Getting Started" icon={faBook}>
-                <NavItem title="Overview" link={Routes.DocsOverview.path} />
-                <NavItem title="Download" link={Routes.DocsDownload.path} />
-                <NavItem title="Quick Start" link={Routes.DocsQuickStart.path} />
-                <NavItem title="License" link={Routes.DocsLicense.path} />
-                <NavItem title="Folder Structure" link={Routes.DocsFolderStructure.path} />
-                <NavItem title="Build Tools" link={Routes.DocsBuild.path} />
-                <NavItem title="Changelog" link={Routes.DocsChangelog.path} />
+              <CollapsableNavItem eventKey="attendance/" title="Quản lý chấm công" icon={faClock}>
+                <NavItem title="Tính lương" link={Routes.SalaryCalculation.path} />
+                <NavItem title="Bảng lương" link={Routes.Payroll.path} />
               </CollapsableNavItem>
-              <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
-                <NavItem title="Accordion" link={Routes.Accordions.path} />
-                <NavItem title="Alerts" link={Routes.Alerts.path} />
-                <NavItem title="Badges" link={Routes.Badges.path} />
-                <NavItem external title="Widgets" link="https://demo.themesberg.com/volt-pro-react/#/components/widgets" target="_blank" badgeText="Pro" />
-                <NavItem title="Breadcrumbs" link={Routes.Breadcrumbs.path} />
-                <NavItem title="Buttons" link={Routes.Buttons.path} />
-                <NavItem title="Forms" link={Routes.Forms.path} />
-                <NavItem title="Modals" link={Routes.Modals.path} />
-                <NavItem title="Navbars" link={Routes.Navbars.path} />
-                <NavItem title="Navs" link={Routes.Navs.path} />
-                <NavItem title="Pagination" link={Routes.Pagination.path} />
-                <NavItem title="Popovers" link={Routes.Popovers.path} />
-                <NavItem title="Progress" link={Routes.Progress.path} />
-                <NavItem title="Tables" link={Routes.Tables.path} />
-                <NavItem title="Tabs" link={Routes.Tabs.path} />
-                <NavItem title="Toasts" link={Routes.Toasts.path} />
-                <NavItem title="Tooltips" link={Routes.Tooltips.path} />
-              </CollapsableNavItem>
-              <NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ThemesbergLogo} />
 
+              {/*<Dropdown.Divider className="my-3 border-indigo" />*/}
+
+              <CollapsableNavItem eventKey="information/" title="Quản lý thông tin" icon={faBook}>
+                <NavItem title="Thuyên chuyển, bổ nhiệm" link={Routes.Appoint.path} />
+                <NavItem title="Trạng thái công tác, nghỉ hưu" link={Routes.Retirement.path} />
+                <NavItem title="Khen thưởng, kỷ luật" link={Routes.Bonus.path} />
+                <NavItem title="Nghỉ phép" link={Routes.Leave.path} />
+              </CollapsableNavItem>
+
+              {/*<NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ThemesbergLogo} />*/}
+              <NavItem title="Quản lý tài sản" link={Routes.AssetManagement.path} icon={faShoppingBasket} />
+              <NavItem title="Báo cáo, thống kê" link={Routes.Report.path} icon={faFileAlt} />
             </Nav>
           </div>
         </SimpleBar>

@@ -48,6 +48,31 @@ import Tables from "./components/Tables";
 import Tabs from "./components/Tabs";
 import Tooltips from "./components/Tooltips";
 import Toasts from "./components/Toasts";
+import ManagementUser from "./system/ManagementUser";
+import ManagementDepartment from "./system/ManagementDepartment";
+import Personnel from "./personnel/Personnel";
+import Contract from "./personnel/Contract";
+import Working from "./personnel/Working";
+import PersonnelReport from "./personnel/PersonnelReport";
+import SalaryCalculation from "./attendance/SalaryCalculation";
+import Payroll from "./attendance/Payroll";
+import Appoint1 from "./information/Appoint1";
+import Retirement from "./information/Retirement";
+import Bonus from "./information/Bonus";
+import Leave from "./information/Leave";
+import Asset from "./asset/Asset";
+import Report from "./report/Report";
+import AddUser from "./system/AddUser";
+import EditUser from "./system/EditUser";
+import ResetPasswordUser from "./system/ResetPasswordUser";
+import AddDepartment from "./system/AddDepartment";
+import EditDepartment from "./system/EditDepartment";
+import AddPersonnel from "./personnel/AddPersonnel";
+import EditPersonnel from "./personnel/EditPersonnel";
+import AddContract from "./personnel/AddContract";
+import EditContract from "./personnel/EditContract";
+import DetailWorking from "./personnel/DetailWorking";
+import DetailPersonnel from "./personnel/DetailPersonnel";
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -90,7 +115,7 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
         <main className="content">
           <Navbar />
           <Component {...props} />
-          <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
+          {/*<Footer toggleSettings={toggleSettings} showSettings={showSettings} />*/}
         </main>
       </>
     )}
@@ -142,6 +167,46 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsFolderStructure.path} component={DocsFolderStructure} />
     <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
+
+    {/* System */}
+    <RouteWithSidebar exact path={Routes.ManagementUser.path} component={ManagementUser} />
+    <RouteWithSidebar exact path={Routes.AddUser.path} component={AddUser} />
+    <RouteWithSidebar exact path={Routes.EditUser.path} component={EditUser} />
+    <RouteWithSidebar exact path={Routes.ResetPasswordUser.path} component={ResetPasswordUser} />
+
+    <RouteWithSidebar exact path={Routes.ManagementDepartment.path} component={ManagementDepartment} />
+    <RouteWithSidebar exact path={Routes.AddDepartment.path} component={AddDepartment} />
+    <RouteWithSidebar exact path={Routes.EditDepartment.path} component={EditDepartment} />
+
+    {/* Personnel */}
+    <RouteWithSidebar exact path={Routes.Personnel.path} component={Personnel} />
+    <RouteWithSidebar exact path={Routes.AddPersonnel.path} component={AddPersonnel} />
+    <RouteWithSidebar exact path={Routes.EditPersonnel.path} component={EditPersonnel} />
+
+    <RouteWithSidebar exact path={Routes.Contract.path} component={Contract} />
+    <RouteWithSidebar exact path={Routes.AddContract.path} component={AddContract} />
+    <RouteWithSidebar exact path={Routes.EditContract.path} component={EditContract} />
+
+    <RouteWithSidebar exact path={Routes.Working.path} component={Working} />
+    <RouteWithSidebar exact path={Routes.DetailWorking.path} component={DetailWorking} />
+    <RouteWithSidebar exact path={Routes.PersonnelReport.path} component={PersonnelReport} />
+    <RouteWithSidebar exact path={Routes.DetailPersonnel.path} component={DetailPersonnel} />
+
+    {/* Attendance */}
+    <RouteWithSidebar exact path={Routes.SalaryCalculation.path} component={SalaryCalculation} />
+    <RouteWithSidebar exact path={Routes.Payroll.path} component={Payroll} />
+
+    {/* Information */}
+    <RouteWithSidebar exact path={Routes.Appoint.path} component={Appoint1} />
+    <RouteWithSidebar exact path={Routes.Retirement.path} component={Retirement} />
+    <RouteWithSidebar exact path={Routes.Bonus.path} component={Bonus} />
+    <RouteWithSidebar exact path={Routes.Leave.path} component={Leave} />
+
+    {/* Asset */}
+    <RouteWithSidebar exact path={Routes.AssetManagement.path} component={Asset} />
+
+    {/* Report */}
+    <RouteWithSidebar exact path={Routes.Report.path} component={Report} />
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>

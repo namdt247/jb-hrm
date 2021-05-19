@@ -1,14 +1,50 @@
 
-import React from "react";
+import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faArrowDown, faArrowUp, faEdit, faEllipsisH, faExternalLinkAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Nav, Card, Image, Button, Table, Dropdown, ProgressBar, Pagination, ButtonGroup } from '@themesberg/react-bootstrap';
+import {
+    faAngleDown,
+    faAngleUp,
+    faArrowDown,
+    faArrowUp,
+    faEdit,
+    faCheck,
+    faEllipsisH,
+    faExternalLinkAlt,
+    faEye,
+    faTrashAlt, faSearch
+} from '@fortawesome/free-solid-svg-icons';
+import {
+    Col,
+    Row,
+    Nav,
+    Card,
+    Image,
+    Button,
+    Table,
+    Dropdown,
+    ProgressBar,
+    Pagination,
+    ButtonGroup,
+    Form, InputGroup
+} from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
-import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
+import {pageVisits, pageTraffic, pageRanking, userItems, userItems2} from "../data/tables";
 import transactions from "../data/transactions";
 import commands from "../data/commands";
+import {
+    contractItems,
+    degreeItems,
+    departmentItems,
+    personnelReportItems,
+    workingItems,
+    workingProcessItems
+} from "../data/main";
+import ModalAddCourse from "../pages/personnel/ModalAddCourse";
+import ModalAddWorking from "../pages/personnel/ModalAddWorking";
+import ModalEditCourse from "../pages/personnel/ModalEditCourse";
+import ModalEditWorking from "../pages/personnel/ModalEditWorking";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -343,4 +379,604 @@ export const CommandsTable = () => {
       </Card.Body>
     </Card>
   );
+};
+
+export const PersonnelTable = () => {
+    const TableRow = (props) => {
+        const { id, avatar, code, fullName, birthday, position, department } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                <td className="fw-bold">
+                    {/*<FontAwesomeIcon icon={sourceIcon} className={`icon icon-xs text-${sourceIconColor} w-30`} />*/}
+                    {/*{source}*/}
+                    <Image src={avatar} width={40} height={40} className="sidebar-icon svg-icon" />
+                </td>
+                <td>{code}</td>
+                <td>{fullName}</td>
+                <td>{birthday}</td>
+                <td>
+                    {position}
+                    {/*<Row className="d-flex align-items-center">*/}
+                    {/*    <Col xs={12} xl={2} className="px-0">*/}
+                    {/*        <small className="fw-bold">{trafficShare}%</small>*/}
+                    {/*    </Col>*/}
+                    {/*    <Col xs={12} xl={10} className="px-0 px-xl-1">*/}
+                    {/*        <ProgressBar variant="primary" className="progress-lg mb-0" now={trafficShare} min={0} max={100} />*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
+                </td>
+                <td>
+                    {department}
+                </td>
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.EditPersonnel.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                                <br /> Sửa
+                            </Link>
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Ảnh</th>
+                        <th className="border-0">Mã</th>
+                        <th className="border-0">Họ và tên</th>
+                        <th className="border-0">Ngày sinh</th>
+                        <th className="border-0">Chức vụ</th>
+                        <th className="border-0">Phòng</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {userItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const UserTable = () => {
+    const TableRow = (props) => {
+        const { id, email, phone, fullName, permission, createdAt } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                {/*<td className="fw-bold">*/}
+                {/*    /!*<FontAwesomeIcon icon={sourceIcon} className={`icon icon-xs text-${sourceIconColor} w-30`} />*!/*/}
+                {/*    /!*{source}*!/*/}
+                {/*    <Image src={avatar} width={40} height={40} className="sidebar-icon svg-icon" />*/}
+                {/*</td>*/}
+                <td>{email}</td>
+                <td>{phone}</td>
+                <td>{fullName}</td>
+                <td>
+                    {permission}
+                    {/*<Row className="d-flex align-items-center">*/}
+                    {/*    <Col xs={12} xl={2} className="px-0">*/}
+                    {/*        <small className="fw-bold">{trafficShare}%</small>*/}
+                    {/*    </Col>*/}
+                    {/*    <Col xs={12} xl={10} className="px-0 px-xl-1">*/}
+                    {/*        <ProgressBar variant="primary" className="progress-lg mb-0" now={trafficShare} min={0} max={100} />*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
+                </td>
+                <td>
+                    {createdAt}
+                </td>
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.EditUser.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                            </Link>
+                            <br /> Sửa
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Email</th>
+                        <th className="border-0">Điện thoại</th>
+                        <th className="border-0">Họ và tên</th>
+                        <th className="border-0">Cấp bậc</th>
+                        <th className="border-0">Ngày tạo</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {userItems2.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const DepartmentTable = () => {
+    const TableRow = (props) => {
+        const { id, name, roomNumber, phone, email, status } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                {/*<td className="fw-bold">*/}
+                {/*    /!*<FontAwesomeIcon icon={sourceIcon} className={`icon icon-xs text-${sourceIconColor} w-30`} />*!/*/}
+                {/*    /!*{source}*!/*/}
+                {/*    <Image src={avatar} width={40} height={40} className="sidebar-icon svg-icon" />*/}
+                {/*</td>*/}
+                <td>{name}</td>
+                <td>{roomNumber}</td>
+                <td>{phone}</td>
+                <td>{email}</td>
+                <td>
+                    <FontAwesomeIcon icon={faCheck} className="me-2 text-danger" />
+                </td>
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.EditDepartment.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                            </Link>
+                            <br /> Sửa
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Phòng ban</th>
+                        <th className="border-0">Số phòng</th>
+                        <th className="border-0">Điện thoại</th>
+                        <th className="border-0">Email</th>
+                        <th className="border-0">Hiệu lực</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {departmentItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const ContractTable = () => {
+    const TableRow = (props) => {
+        const { id, type, name, startDate, endDate, employee, status } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                {/*<td className="fw-bold">*/}
+                {/*    /!*<FontAwesomeIcon icon={sourceIcon} className={`icon icon-xs text-${sourceIconColor} w-30`} />*!/*/}
+                {/*    /!*{source}*!/*/}
+                {/*    <Image src={avatar} width={40} height={40} className="sidebar-icon svg-icon" />*/}
+                {/*</td>*/}
+                <td>{type}</td>
+                <td>{name}</td>
+                <td>{startDate}</td>
+                <td>{endDate}</td>
+                <td>{employee}</td>
+                <td>
+                    <FontAwesomeIcon icon={faCheck} className="me-2 text-danger" />
+                </td>
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.EditContract.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                            </Link>
+                            <br /> Sửa
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Loại hợp đồng</th>
+                        <th className="border-0">Tên hợp đồng</th>
+                        <th className="border-0">Ngày bắt đầu</th>
+                        <th className="border-0">Ngày kết thúc</th>
+                        <th className="border-0">Nhân viên</th>
+                        <th className="border-0">Hiệu lực</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {contractItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const WorkingTable = () => {
+    const TableRow = (props) => {
+        const { id, codeEmployee, fullName, trainingUnits, position, department } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                {/*<td className="fw-bold">*/}
+                {/*    /!*<FontAwesomeIcon icon={sourceIcon} className={`icon icon-xs text-${sourceIconColor} w-30`} />*!/*/}
+                {/*    /!*{source}*!/*/}
+                {/*    <Image src={avatar} width={40} height={40} className="sidebar-icon svg-icon" />*/}
+                {/*</td>*/}
+                <td>{codeEmployee}</td>
+                <td>{fullName}</td>
+                <td>{trainingUnits}</td>
+                <td>{position}</td>
+                <td>{department}</td>
+                {/*<td>*/}
+                {/*    <FontAwesomeIcon icon={faCheck} className="me-2 text-danger" />*/}
+                {/*</td>*/}
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.DetailWorking.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                                <br /> Chi tiết
+                            </Link>
+                        </div>
+                        {/*<div className="col-6">*/}
+                        {/*    <FontAwesomeIcon icon={faTrashAlt} className="me-2" />*/}
+                        {/*    <br /> Xoá*/}
+                        {/*</div>*/}
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Mã cán bộ</th>
+                        <th className="border-0">Họ và tên</th>
+                        <th className="border-0">Đơn vị đào tạo</th>
+                        <th className="border-0">Chức vụ</th>
+                        <th className="border-0">Phòng</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {workingItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const TrainingTable = () => {
+    const [showModal, setShowModal] = useState(false);
+    const TableRow = (props) => {
+        const { id, trainingUnits, specialized, trainingTime, trainingType, degreeType } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                <td>{trainingUnits}</td>
+                <td>{specialized}</td>
+                <td>{trainingTime}</td>
+                <td>{trainingType}</td>
+                <td>{degreeType}</td>
+                <td>
+                    <div className="row">
+                        <div className="col-6"
+                             onClick={() => setShowModal(!showModal)}
+                             style={{
+                                 cursor: "pointer",
+                             }}
+                        >
+                            <FontAwesomeIcon icon={faEdit} className="me-2" />
+                            <br /> Sửa
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <div className="d-xl-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mx-3 mt-3">
+                <div className="d-block mb-4 mb-xl-0">
+                    <h5>Các khoá đào đạo</h5>
+                </div>
+                <div className="btn-toolbar mb-2 mb-md-0">
+                    <ButtonGroup>
+                        <ModalAddCourse />
+                    </ButtonGroup>
+                </div>
+            </div>
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Đơn vị đào tạo</th>
+                        <th className="border-0">Chuyên ngành</th>
+                        <th className="border-0">Thời gian đào tạo</th>
+                        <th className="border-0">Hình thức đào tạo</th>
+                        <th className="border-0">Loại bằng</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {degreeItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+            <ModalEditCourse
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+        </Card>
+    );
+};
+
+export const WorkingProcessTable = () => {
+    const [showModal, setShowModal] = useState(false);
+    const TableRow = (props) => {
+        const { id, time, description } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                <td>{time}</td>
+                <td>{description}</td>
+                <td>
+                    <div className="row">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModal(!showModal)}
+                            style={{
+                                cursor: "pointer",
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faEdit} className="me-2" />
+                            <br /> Sửa
+                        </div>
+                        <div className="col-6">
+                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" />
+                            <br /> Xoá
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <div className="d-xl-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mx-3 mt-3">
+                <div className="d-block mb-4 mb-xl-0">
+                    <h5>Quá trình công tác</h5>
+                </div>
+                <div className="btn-toolbar mb-2 mb-md-0">
+                    <ButtonGroup>
+                        <ModalAddWorking />
+                    </ButtonGroup>
+                </div>
+            </div>
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Thời gian</th>
+                        <th className="border-0">Mô tả công việc</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {workingProcessItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+            <ModalEditWorking
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+        </Card>
+    );
+};
+
+export const PersonnelReportTable = () => {
+    const TableRow = (props) => {
+        const { id, fullName, gender, birthday, position, degreeLevel, politicalLevel } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                <td>{fullName}</td>
+                <td>{gender === 1 ? 'Nam' : 'Nữ'}</td>
+                <td>{birthday}</td>
+                <td>{position}</td>
+                <td>{degreeLevel}</td>
+                <td>{politicalLevel}</td>
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.DetailPersonnel.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                                <br /> Chi tiết
+                            </Link>
+                        </div>
+                        {/*<div className="col-6">*/}
+                        {/*    <FontAwesomeIcon icon={faTrashAlt} className="me-2" />*/}
+                        {/*    <br /> Xoá*/}
+                        {/*</div>*/}
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Họ và tên</th>
+                        <th className="border-0">Giới tính</th>
+                        <th className="border-0">Ngày sinh</th>
+                        <th className="border-0">Chức vụ</th>
+                        <th className="border-0">Trình độ đào tạo</th>
+                        <th className="border-0">Trình độ LLCT</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {personnelReportItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export const AppointTable = () => {
+    const TableRow = (props) => {
+        const { id, codeEmployee, fullName, position, department, reviewDate, effectiveDate } = props;
+
+        return (
+            <tr>
+                <td>
+                    <Card.Link href="#" className="text-primary fw-bold">{id}</Card.Link>
+                </td>
+                <td>{codeEmployee}</td>
+                <td>{fullName}</td>
+                <td>{position}</td>
+                <td>{department}</td>
+                <td>{reviewDate}</td>
+                <td>{effectiveDate}</td>
+                {/*<td>*/}
+                {/*    <FontAwesomeIcon icon={faCheck} className="me-2 text-danger" />*/}
+                {/*</td>*/}
+                <td>
+                    <div className="row">
+                        <div className="col-6">
+                            <Link to={Routes.DetailWorking.path}>
+                                <FontAwesomeIcon icon={faEdit} className="me-2" />
+                                <br /> Chi tiết
+                            </Link>
+                        </div>
+                        {/*<div className="col-6">*/}
+                        {/*    <FontAwesomeIcon icon={faTrashAlt} className="me-2" />*/}
+                        {/*    <br /> Xoá*/}
+                        {/*</div>*/}
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    return (
+        <Card border="light" className="shadow-sm mb-2">
+            <Card.Body className="pb-0">
+                <Table responsive className="table-centered table-nowrap rounded mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th className="border-0">STT</th>
+                        <th className="border-0">Mã cán bộ</th>
+                        <th className="border-0">Họ và tên</th>
+                        <th className="border-0">Đơn vị đào tạo</th>
+                        <th className="border-0">Chức vụ</th>
+                        <th className="border-0">Phòng</th>
+                        <th className="border-0">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {workingItems.map((user) => <TableRow key={`user-${user.id}`} {...user} />)}
+                    </tbody>
+                </Table>
+            </Card.Body>
+        </Card>
+    );
 };

@@ -17,6 +17,44 @@ export const Routes = {
     NotFound: { path: "/examples/404" },
     ServerError: { path: "/examples/500" },
 
+    // System
+    ManagementUser: { path: '/system/management-user' },
+    ManagementDepartment: { path: '/system/management-department' },
+    AddUser: { path: '/system/add-user' },
+    EditUser: { path: '/system/edit-user' },
+    ResetPasswordUser: { path: '/system/reset-password-user' },
+    AddDepartment: { path: '/system/add-department' },
+    EditDepartment: { path: '/system/edit-department' },
+
+    // Personnel Management
+    Personnel: { path: '/personnel/index' },
+    AddPersonnel: { path: '/personnel/add-personnel' },
+    EditPersonnel: { path: '/personnel/edit-personnel' },
+
+    Contract: { path: '/personnel/contract' },
+    AddContract: { path: '/personnel/add-contract' },
+    EditContract: { path: '/personnel/edit-contract' },
+    Working: { path: '/personnel/working' },
+    DetailWorking: { path: '/personnel/working-detail' },
+    PersonnelReport: { path: '/personnel/report' },
+    DetailPersonnel: { path: '/personnel/detail' },
+
+    // Attendance Management
+    SalaryCalculation: { path: '/attendance/salary-calculation' },
+    Payroll: { path: '/attendance/payroll'},
+
+    // Information Management
+    Appoint: { path: '/information/appoint' },
+    Retirement: { path: '/information/retirement' },
+    Bonus: { path: '/information/bonus' },
+    Leave: { path: '/information/leave' },
+
+    // Asset Management
+    AssetManagement: { path: '/management-asset' },
+
+    // Report
+    Report: { path: '/report/index' },
+
     // docs
     DocsOverview: { path: "/documentation/overview" },
     DocsDownload: { path: "/documentation/download" },

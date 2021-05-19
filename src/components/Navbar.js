@@ -51,14 +51,14 @@ export default (props) => {
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100">
           <div className="d-flex align-items-center">
-            <Form className="navbar-search">
-              <Form.Group id="topbarSearch">
-                <InputGroup className="input-group-merge search-bar">
-                  <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>
-                  <Form.Control type="text" placeholder="Search" />
-                </InputGroup>
-              </Form.Group>
-            </Form>
+            {/*<Form className="navbar-search">*/}
+            {/*  <Form.Group id="topbarSearch">*/}
+            {/*    <InputGroup className="input-group-merge search-bar">*/}
+            {/*      <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>*/}
+            {/*      <Form.Control type="text" placeholder="Search" />*/}
+            {/*    </InputGroup>*/}
+            {/*  </Form.Group>*/}
+            {/*</Form>*/}
           </div>
           <Nav className="align-items-center">
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
@@ -88,7 +88,7 @@ export default (props) => {
                 <div className="media d-flex align-items-center">
                   <Image src={Profile3} className="user-avatar md-avatar rounded-circle" />
                   <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                    <span className="mb-0 font-small fw-bold">Bonnie Green</span>
+                    <span className="mb-0 font-small fw-bold">Quản lý</span>
                   </div>
                 </div>
               </Dropdown.Toggle>
