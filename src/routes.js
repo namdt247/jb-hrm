@@ -42,18 +42,38 @@ export const Routes = {
     // Attendance Management
     SalaryCalculation: { path: '/attendance/salary-calculation' },
     Payroll: { path: '/attendance/payroll'},
+    DetailSalary: { path: '/attendance/payroll/detail'},
 
     // Information Management
     Appoint: { path: '/information/appoint' },
+    AddAppoint: { path: '/information/add-appoint' },
+    DetailAppoint: { path: '/information/detail-appoint' },
+
     Retirement: { path: '/information/retirement' },
+    AddRetirement: { path: '/information/add-retirement' },
+    DetailRetirement: { path: '/information/detail-retirement' },
+
     Bonus: { path: '/information/bonus' },
+    AddBonus: { path: '/information/add-bonus' },
+    DetailBonus: { path: '/information/detail-bonus' },
+
     Leave: { path: '/information/leave' },
+    DetailLeave: { path: '/information/detail-leave' },
 
     // Asset Management
     AssetManagement: { path: '/management-asset' },
+    DetailAsset: { path: '/detail-asset' },
 
     // Report
-    Report: { path: '/report/index' },
+    Report: { path: '/reports/index' },
+    ReportSalary: { path: '/reports/salary' },
+    ReportIncreaseSalary: { path: '/reports/salary-increase' },
+    ReportEmployee: { path: '/reports/employee' },
+    ReportDetailEmployeeRoom: { path: '/reports/employee/detail-room' },
+    ReportExam: { path: '/reports/exam' },
+    ReportSalaryAllowance: { path: '/reports/salary-allowance' },
+    ReportEmployeeOrganize: { path: '/reports/employee-organize' },
+    ListContract: { path: '/reports/list-contract' },
 
     // docs
     DocsOverview: { path: "/documentation/overview" },

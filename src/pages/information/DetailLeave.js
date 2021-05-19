@@ -1,24 +1,17 @@
 import React from "react";
 import {Col, Row, Card, Form, Container, InputGroup, Button, ButtonGroup, Table} from '@themesberg/react-bootstrap';
-import {departmentItems} from "../../data/department";
-import {contractType, employeeItems, roleItem, workingItems} from "../../data/main";
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {Routes} from "../../routes";
 import BackIcon from "../../components/BackIcon";
-import MDatepicker from "../../components/MDatepicker";
-import {TrainingTable, WorkingProcessTable} from "../../components/Tables";
-import ModalAddCourse from "./ModalAddCourse";
+import {LeaveDetailTable, TrainingTable, WorkingProcessTable} from "../../components/Tables";
 
-function DetailWorking() {
+function DetailLeave() {
     return (
         <>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
                 <div className="d-block mb-4 mb-md-0">
-                    <h4>Chi tiết quá trình làm việc</h4>
+                    <h4>Chi tiết thông tin nghỉ phép</h4>
                     <BackIcon
-                        path={Routes.Working.path}
+                        path={Routes.Leave.path}
                     />
                     {/*<Link to={Routes.ManagementDepartment.path}>*/}
                     {/*    <div className="text-info">*/}
@@ -54,22 +47,13 @@ function DetailWorking() {
                                 </Form.Group>
                             </Col>
                         </Row>
-
-
-                        {/*<Button variant="secondary" size='sm' className="m-1">*/}
-                        {/*    Thêm mới*/}
-                        {/*</Button>*/}
-                        {/*<Button variant="danger" size='sm' className="m-1">*/}
-                        {/*    Huỷ bỏ*/}
-                        {/*</Button>*/}
                     </Form>
                 </Card.Body>
             </Card>
 
-            <TrainingTable />
-            <WorkingProcessTable />
+            <LeaveDetailTable />
         </>
     );
 };
 
-export default DetailWorking;
+export default DetailLeave;

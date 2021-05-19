@@ -3,16 +3,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {Breadcrumb, Button, ButtonGroup, Form, InputGroup} from '@themesberg/react-bootstrap';
 
-import {AppointTable, LeaveTable, PersonnelTable} from "../../components/Tables";
+import {AppointTable, ListContractTable, PersonnelTable, ReportSalaryTable} from "../../components/Tables";
 import {Link} from "react-router-dom";
 import {Routes} from "../../routes";
 import MPagination from "../../components/MPagination";
+import ModalAddContract from "./ModalAddContract";
 
 
-function Leave() {
+function ListContract() {
     return (
         <>
-            <h4>Quản lý nghỉ phép</h4>
+            <h4>Danh sách hợp đồng</h4>
             <div className="d-xl-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-4">
                 <div className="d-block mb-4 mb-xl-0">
                     <Form className="navbar-search">
@@ -27,25 +28,15 @@ function Leave() {
                 </div>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <ButtonGroup>
-                        {/*<Link to={Routes.AddAppoint.path}>*/}
-                        {/*    <Button variant="danger" size='sm'>*/}
-                        {/*        Thêm mới*/}
-                        {/*    </Button>*/}
-                        {/*</Link>*/}
-
-                        <Link to='#'>
-                            <Button variant="outline-primary" size="sm">Export</Button>
-                        </Link>
-                        {/*<Button variant="outline-primary" size="sm">Share</Button>*/}
-                        {/*<Button variant="outline-primary" size="sm">Export</Button>*/}
+                        <ModalAddContract />
                     </ButtonGroup>
                 </div>
             </div>
 
-            <LeaveTable />
+            <ListContractTable />
             <MPagination />
         </>
     );
 };
 
-export default Leave;
+export default ListContract;

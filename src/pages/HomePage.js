@@ -54,13 +54,9 @@ import Personnel from "./personnel/Personnel";
 import Contract from "./personnel/Contract";
 import Working from "./personnel/Working";
 import PersonnelReport from "./personnel/PersonnelReport";
-import SalaryCalculation from "./attendance/SalaryCalculation";
 import Payroll from "./attendance/Payroll";
-import Appoint1 from "./information/Appoint1";
-import Retirement from "./information/Retirement";
 import Bonus from "./information/Bonus";
 import Leave from "./information/Leave";
-import Asset from "./asset/Asset";
 import Report from "./report/Report";
 import AddUser from "./system/AddUser";
 import EditUser from "./system/EditUser";
@@ -73,6 +69,27 @@ import AddContract from "./personnel/AddContract";
 import EditContract from "./personnel/EditContract";
 import DetailWorking from "./personnel/DetailWorking";
 import DetailPersonnel from "./personnel/DetailPersonnel";
+import Appoint from "./information/Appoint";
+import AddAppoint from "./information/AddAppoint";
+import DetailAppoint from "./information/DetailAppoint";
+import Retirement from "./information/Retirement";
+import AddRetirement from "./information/AddRetirement";
+import DetailRetirement from "./information/DetailRetirement";
+import AddBonus from "./information/AddBonus";
+import DetailBonus from "./information/DetailBonus";
+import DetailLeave from "./information/DetailLeave";
+import AssetManagement from "./asset/AssetManagement";
+import DetailAsset from "./asset/DetailAsset";
+import ReportSalary from "./report/ReportSalary";
+import ReportIncreaseSalary from "./report/ReportIncreaseSalary";
+import ReportEmployee from "./report/ReportEmployee";
+import ReportDetailEmployee from "./report/ReportDetailEmployee";
+import ReportExam from "./report/ReportExam";
+import ReportSalaryAllowance from "./report/ReportSalaryAllowance";
+import ReportEmployeeOrganize from "./report/ReportEmployeeOrganize";
+import ListContract from "./report/ListContract";
+import Dashboard from "./dashboard/Dashboard";
+import DetailSalary from "./attendance/DetailSalary";
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -135,7 +152,7 @@ export default () => (
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
 
     {/* pages */}
-    <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
+    <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={Dashboard} />
     <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} />
     <RouteWithSidebar exact path={Routes.Transactions.path} component={Transactions} />
     <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
@@ -193,20 +210,39 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DetailPersonnel.path} component={DetailPersonnel} />
 
     {/* Attendance */}
-    <RouteWithSidebar exact path={Routes.SalaryCalculation.path} component={SalaryCalculation} />
     <RouteWithSidebar exact path={Routes.Payroll.path} component={Payroll} />
+    <RouteWithSidebar exact path={Routes.DetailSalary.path} component={DetailSalary} />
 
     {/* Information */}
-    <RouteWithSidebar exact path={Routes.Appoint.path} component={Appoint1} />
+    <RouteWithSidebar exact path={Routes.Appoint.path} component={Appoint} />
+    <RouteWithSidebar exact path={Routes.AddAppoint.path} component={AddAppoint} />
+    <RouteWithSidebar exact path={Routes.DetailAppoint.path} component={DetailAppoint} />
+
     <RouteWithSidebar exact path={Routes.Retirement.path} component={Retirement} />
+    <RouteWithSidebar exact path={Routes.AddRetirement.path} component={AddRetirement} />
+    <RouteWithSidebar exact path={Routes.DetailRetirement.path} component={DetailRetirement} />
+
     <RouteWithSidebar exact path={Routes.Bonus.path} component={Bonus} />
+    <RouteWithSidebar exact path={Routes.AddBonus.path} component={AddBonus} />
+    <RouteWithSidebar exact path={Routes.DetailBonus.path} component={DetailBonus} />
+
     <RouteWithSidebar exact path={Routes.Leave.path} component={Leave} />
+    <RouteWithSidebar exact path={Routes.DetailLeave.path} component={DetailLeave} />
 
     {/* Asset */}
-    <RouteWithSidebar exact path={Routes.AssetManagement.path} component={Asset} />
+    <RouteWithSidebar exact path={Routes.AssetManagement.path} component={AssetManagement} />
+    <RouteWithSidebar exact path={Routes.DetailAsset.path} component={DetailAsset} />
 
     {/* Report */}
     <RouteWithSidebar exact path={Routes.Report.path} component={Report} />
+    <RouteWithSidebar exact path={Routes.ReportIncreaseSalary.path} component={ReportIncreaseSalary} />
+    <RouteWithSidebar exact path={Routes.ReportSalary.path} component={ReportSalary} />
+    <RouteWithSidebar exact path={Routes.ReportEmployee.path} component={ReportEmployee} />
+    <RouteWithSidebar exact path={Routes.ReportDetailEmployeeRoom.path} component={ReportDetailEmployee} />
+    <RouteWithSidebar exact path={Routes.ReportExam.path} component={ReportExam} />
+    <RouteWithSidebar exact path={Routes.ReportSalaryAllowance.path} component={ReportSalaryAllowance} />
+    <RouteWithSidebar exact path={Routes.ReportEmployeeOrganize.path} component={ReportEmployeeOrganize} />
+    <RouteWithSidebar exact path={Routes.ListContract.path} component={ListContract} />
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>

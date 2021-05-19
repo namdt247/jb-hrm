@@ -116,7 +116,7 @@ export default (props = {}) => {
               </CollapsableNavItem>
 
               <CollapsableNavItem eventKey="attendance/" title="Quản lý chấm công" icon={faClock}>
-                <NavItem title="Tính lương" link={Routes.SalaryCalculation.path} />
+                {/*<NavItem title="Tính lương" link={Routes.SalaryCalculation.path} />*/}
                 <NavItem title="Bảng lương" link={Routes.Payroll.path} />
               </CollapsableNavItem>
 
@@ -129,9 +129,18 @@ export default (props = {}) => {
                 <NavItem title="Nghỉ phép" link={Routes.Leave.path} />
               </CollapsableNavItem>
 
-              {/*<NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ThemesbergLogo} />*/}
               <NavItem title="Quản lý tài sản" link={Routes.AssetManagement.path} icon={faShoppingBasket} />
-              <NavItem title="Báo cáo, thống kê" link={Routes.Report.path} icon={faFileAlt} />
+
+              <CollapsableNavItem eventKey="reports/" title="Báo cáo, thống kê" icon={faFileAlt}>
+                <NavItem title="Báo cáo nâng lương" link={Routes.ReportIncreaseSalary.path} />
+                <NavItem title="Báo cáo đội ngũ viên chức" link={Routes.ReportEmployee.path} />
+                <NavItem title="Báo cáo thi nâng ngạch" link={Routes.ReportExam.path} />
+                <NavItem title="Báo cáo phụ cấp lương" link={Routes.ReportSalaryAllowance.path} />
+                <NavItem title="Báo cáo cán bộ tổ chức" link={Routes.ReportEmployeeOrganize.path} />
+                <NavItem title="Báo cáo lương công chức" link={Routes.ReportSalary.path} />
+                <NavItem title="Danh sách hợp đồng" link={Routes.ListContract.path} />
+              </CollapsableNavItem>
+
             </Nav>
           </div>
         </SimpleBar>
