@@ -54,7 +54,7 @@ export default (props = {}) => {
       <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
         <Nav.Link {...linkProps} target={target} className={classNames}>
           <span>
-            {icon ? <span className="sidebar-icon"><FontAwesomeIcon size={10} icon={icon} /> </span> : null}
+            {icon ? <span className="sidebar-icon"><FontAwesomeIcon size='sm' icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
             <span className="sidebar-text" style={{ fontSize: 14, }}>{title}</span>

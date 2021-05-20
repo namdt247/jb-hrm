@@ -7,7 +7,7 @@ import photo from '../../assets/img/team/profile-picture-1.jpg';
 import BackIcon from "../../components/BackIcon";
 import {Routes} from "../../routes";
 import {Link} from "react-router-dom";
-import Until from "../../common/Until";
+import Until from "../../common/Util";
 
 
 function DetailSalary() {

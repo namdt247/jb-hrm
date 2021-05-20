@@ -1,4 +1,4 @@
-class Until {
+class Util {
     convertMoney(number, prefix = true) {
         let strNumber = number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         if(prefix) {
@@ -8,4 +8,4 @@ class Until {
     }
 }
 
-export default new Until();
+export default new Util();

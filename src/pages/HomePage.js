@@ -112,16 +112,16 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const localStorageIsSettingsVisible = () => {
-    return localStorage.getItem('settingsVisible') === 'false' ? false : true
-  }
-
-  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
-
-  const toggleSettings = () => {
-    setShowSettings(!showSettings);
-    localStorage.setItem('settingsVisible', !showSettings);
-  }
+  // const localStorageIsSettingsVisible = () => {
+  //   return localStorage.getItem('settingsVisible') === 'false' ? false : true
+  // }
+  //
+  // const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
+  //
+  // const toggleSettings = () => {
+  //   setShowSettings(!showSettings);
+  //   localStorage.setItem('settingsVisible', !showSettings);
+  // }
 
   return (
     <Route {...rest} render={props => (

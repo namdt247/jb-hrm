@@ -66,7 +66,7 @@ import ModalEditDevice from "../pages/asset/ModalEditDevice";
 import ReportSalaryAllowance from "../pages/report/ReportSalaryAllowance";
 import ModalEditContract from "../pages/report/ModalEditContract";
 import ModalConfirmDelete from "../pages/components/ModalConfirmDelete";
-import Until from "../common/Until";
+import Until from "../common/Util";
 
 const ValueChange = ({value, suffix}) => {
     const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -413,6 +413,7 @@ export const CommandsTable = () => {
 };
 
 export const PersonnelTable = () => {
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const TableRow = (props) => {
         const {id, avatar, code, fullName, birthday, position, department} = props;
 
@@ -451,7 +452,11 @@ export const PersonnelTable = () => {
                                 <br/> Sửa
                             </Link>
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -482,11 +487,16 @@ export const PersonnelTable = () => {
                     </tbody>
                 </Table>
             </Card.Body>
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
+            />
         </Card>
     );
 };
 
 export const UserTable = () => {
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const TableRow = (props) => {
         const {id, email, phone, fullName, permission, createdAt} = props;
 
@@ -522,10 +532,14 @@ export const UserTable = () => {
                         <div className="col-6">
                             <Link to={Routes.EditUser.path}>
                                 <FontAwesomeIcon icon={faEdit} className="me-2"/>
+                                <br/> Sửa
                             </Link>
-                            <br/> Sửa
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -555,11 +569,16 @@ export const UserTable = () => {
                     </tbody>
                 </Table>
             </Card.Body>
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
+            />
         </Card>
     );
 };
 
 export const DepartmentTable = () => {
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const TableRow = (props) => {
         const {id, name, roomNumber, phone, email, status} = props;
 
@@ -585,10 +604,14 @@ export const DepartmentTable = () => {
                         <div className="col-6">
                             <Link to={Routes.EditDepartment.path}>
                                 <FontAwesomeIcon icon={faEdit} className="me-2"/>
+                                <br/> Sửa
                             </Link>
-                            <br/> Sửa
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -618,11 +641,16 @@ export const DepartmentTable = () => {
                     </tbody>
                 </Table>
             </Card.Body>
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
+            />
         </Card>
     );
 };
 
 export const ContractTable = () => {
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const TableRow = (props) => {
         const {id, type, name, startDate, endDate, employee, status} = props;
 
@@ -649,10 +677,14 @@ export const ContractTable = () => {
                         <div className="col-6">
                             <Link to={Routes.EditContract.path}>
                                 <FontAwesomeIcon icon={faEdit} className="me-2"/>
+                                <br/> Sửa
                             </Link>
-                            <br/> Sửa
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -683,6 +715,10 @@ export const ContractTable = () => {
                     </tbody>
                 </Table>
             </Card.Body>
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
+            />
         </Card>
     );
 };
@@ -1194,6 +1230,7 @@ export const LeaveTable = () => {
 
 export const LeaveDetailTable = () => {
     const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const TableRow = (props) => {
         const {id, breakDate, note} = props;
 
@@ -1215,7 +1252,11 @@ export const LeaveDetailTable = () => {
                             <FontAwesomeIcon icon={faEdit} className="me-2"/>
                             <br/> Sửa
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -1255,6 +1296,10 @@ export const LeaveDetailTable = () => {
             <ModalEditLeave
                 showModal={showModal}
                 setShowModal={setShowModal}
+            />
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
             />
         </Card>
     );
@@ -1315,6 +1360,7 @@ export const AssetTable = () => {
 
 export const DetailAssetTable = () => {
     const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const showStatus = (status) => {
         let str = '';
@@ -1363,7 +1409,11 @@ export const DetailAssetTable = () => {
                             <FontAwesomeIcon icon={faEdit} className="me-2"/>
                             <br/> Sửa
                         </div>
-                        <div className="col-6">
+                        <div
+                            className="col-6"
+                            onClick={() => setShowModalDelete(!showModalDelete)}
+                            style={{cursor: "pointer"}}
+                        >
                             <FontAwesomeIcon icon={faTrashAlt} className="me-2"/>
                             <br/> Xoá
                         </div>
@@ -1404,6 +1454,10 @@ export const DetailAssetTable = () => {
             <ModalEditDevice
                 showModal={showModal}
                 setShowModal={setShowModal}
+            />
+            <ModalConfirmDelete
+                showModalDelete={showModalDelete}
+                setShowModalDelete={setShowModalDelete}
             />
         </Card>
     );

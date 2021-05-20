@@ -17,16 +17,16 @@ function ModalConfirmDelete(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
-                        <Col>
+                        <Col style={{fontSize: 14}}>
                             Dữ liệu bị xoá sẽ không thể phục hồi, bạn có chắc muốn xoá?
                         </Col>
                     </Row>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        OK
+                    <Button variant="secondary" size='sm' onClick={handleClose}>
+                        Đồng ý
                     </Button>
-                    <Button variant="warning" className="text-gray" onClick={handleClose}>
+                    <Button variant="warning" size='sm' className="text-gray" onClick={handleClose}>
                         Huỷ bỏ
                     </Button>
                 </Modal.Footer>
