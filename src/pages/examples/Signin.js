@@ -75,6 +75,7 @@ export default () => {
                           <FontAwesomeIcon icon={faUnlockAlt} />
                         </InputGroup.Text>
                         <Form.Control
+                            autoFocus
                             required
                             type="password"
                             placeholder="Password"
@@ -95,8 +96,8 @@ export default () => {
                   </Form.Group>
                   <Button variant="primary" type="submit" className="w-100"
                           onClick={(e) => {
-                            e.preventDefault();
                             if (userName && password) {
+                              e.preventDefault();
                               if (checkLogin(userName, password)) {
                                 history.push(Routes.DashboardOverview.path)
                               } else {
