@@ -6,7 +6,7 @@ export default () => {
   let history = useHistory();
 
   useEffect(() => {
-    history.push(Routes.DashboardOverview.path);
+    history.push(Routes.Signin.path);
   }, [history]);
 
   return (
