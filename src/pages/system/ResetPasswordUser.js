@@ -4,18 +4,9 @@ import {
     Row,
     Card,
     Form,
-    Container,
-    InputGroup,
     Button,
-    Breadcrumb,
-    ButtonGroup
 } from '@themesberg/react-bootstrap';
-import {departmentItems} from "../../data/department";
-import {employeeItems, roleItem} from "../../data/main";
-import {Link} from "react-router-dom";
 import {Routes} from "../../routes";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome} from "@fortawesome/free-solid-svg-icons";
 import BackIcon from "../../components/BackIcon";
 
 function ResetPasswordUser() {

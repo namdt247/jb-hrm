@@ -5,7 +5,6 @@ import { Routes } from "../routes";
 // pages
 import Presentation from "./Presentation";
 import Upgrade from "./Upgrade";
-import DashboardOverview from "./dashboard/DashboardOverview";
 import Transactions from "./Transactions";
 import Settings from "./Settings";
 import BootstrapTables from "./tables/BootstrapTables";
@@ -29,7 +28,6 @@ import DocsChangelog from "./documentation/DocsChangelog";
 // components
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 
 import Accordion from "./components/Accordion";
@@ -112,16 +110,16 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // const localStorageIsSettingsVisible = () => {
-  //   return localStorage.getItem('settingsVisible') === 'false' ? false : true
-  // }
-  //
-  // const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
-  //
-  // const toggleSettings = () => {
-  //   setShowSettings(!showSettings);
-  //   localStorage.setItem('settingsVisible', !showSettings);
-  // }
+  const localStorageIsSettingsVisible = () => {
+    return localStorage.getItem('settingsVisible') === 'false' ? false : true
+  }
+
+  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+    localStorage.setItem('settingsVisible', !showSettings);
+  }
 
   return (
     <Route {...rest} render={props => (
